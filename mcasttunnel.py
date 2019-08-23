@@ -247,14 +247,14 @@ class TcpClient:
 if __name__ == "__main__":
 
     argparser = argparse.ArgumentParser(prog='mcasttunnel', description='Tunnel UDP multicast packets over TCP')
-    argparser.add_argument('-s', '--server', action='store_true')
-    argparser.add_argument('-a', '--address', action='store', required=True)
-    argparser.add_argument('-p', '--port', action='store', required=True)
-    argparser.add_argument('-i', '--mcast_interface_addr', action='store', required=True)
-    argparser.add_argument('-g', '--mcast_grp_addr', action='store', required=True)
-    argparser.add_argument('-r', '--mcast_grp_port', action='store', required=True)
-    argparser.add_argument('-t', '--mcast_ttl', action='store', required=True)
-    argparser.add_argument('-v', '--verbose', action='store_true', required=False)
+    argparser.add_argument('-s', '--server', action='store_true', help='if set run as TCP server, client otherwise')
+    argparser.add_argument('-a', '--address', action='store', required=True, help='the server\'s address if running as client, the address of the network interface to listen on when running as server (0.0.0.0 for any interface)')
+    argparser.add_argument('-p', '--port', action='store', required=True, help='the port the server listens (or should listen) on')
+    argparser.add_argument('-i', '--mcast_interface_addr', action='store', required=True, help='the address of the network interface to be used to send/receive multicast packets')
+    argparser.add_argument('-g', '--mcast_grp_addr', action='store', required=True, help='the IP address of the multicast group')
+    argparser.add_argument('-r', '--mcast_grp_port', action='store', required=True, help='the port of the multicast group')
+    argparser.add_argument('-t', '--mcast_ttl', action='store', required=True, help='the TTL for multicast packets')
+    argparser.add_argument('-v', '--verbose', action='store_true', required=False, help='enables verbose output')
     args = argparser.parse_args()
 
     logger.setLevel(logging.INFO)
